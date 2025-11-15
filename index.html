@@ -243,6 +243,92 @@
   background: #e8e3ff;
   opacity: 0.6;
 }
+/* ================================
+   ESTILOS PARA CELULAR (mobile)
+   ================================ */
+@media (max-width: 768px) {
+
+  body {
+    padding: 10px;
+  }
+
+  .wrapper {
+    max-width: 100%;
+  }
+
+  .card {
+    flex-direction: column;
+    padding: 22px;
+    gap: 22px;
+  }
+
+  .left, .right {
+    flex: unset;
+    width: 100%;
+  }
+
+  .brand {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .brand-title {
+    font-size: 36px;
+  }
+
+  .brand-subtitle {
+    text-align: center;
+    font-size: 16px;
+  }
+
+  .pill {
+    margin: 0 auto 16px auto;
+    display: block;
+    text-align: center;
+  }
+
+  .title {
+    text-align: center;
+    font-size: 22px;
+  }
+
+  .subtitle {
+    text-align: center;
+    font-size: 15px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .tiny-heading,
+  .tiny-text,
+  .tiny-footer {
+    text-align: center;
+  }
+
+  .progress-section {
+    margin-top: 25px;
+  }
+
+  .progress-label {
+    text-align: center;
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .progress-squares {
+    justify-content: center;
+    width: 100%;
+  }
+}
 
 
   </style>
@@ -361,3 +447,4 @@
 
 </body>
 </html>
+
