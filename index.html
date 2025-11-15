@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ágora — Gestión clara para tu negocio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Ágora es una herramienta simple para que comercios y emprendedores registren sus ventas, gastos y cierres de caja desde la PC y el celular.">
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --card: #f8f8fb;
+      --border: #e5e5ee;
+      --text-main: #222222;
+      --text-muted: #666666;
+      --primary: #6C47FF;      /* violeta oficial */
+      --primary-soft: #7A56FF; /* hover */
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 20px;
+      color: var(--text-main);
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 940px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+      margin-top: 25px;
+    }
+
+    .left, .right {
+      flex: 1;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .brand-icon {
+      width: 90px;
+      height: 90px;
+      border-radius: 20px;
+    }
+
+    .brand-title {
+      font-size: 45px;
+      font-weight: 700;
+      color: #333;
+    }
+
+    .brand-subtitle {
+      font-size: 18px;
+      color: #555;
+      margin-top: 5px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(108, 71, 255, 0.12);
+      border: 1px solid rgba(108, 71, 255, 0.25);
+      color: var(--primary);
+      font-size: 12px;
+      margin-bottom: 18px;
+      letter-spacing: 0.06em;
+    }
+
+    .title {
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #222;
+    }
+
+    .subtitle {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 22px;
+      line-height: 1.45;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-size: 15px;
+      text-decoration: none;
+      font-weight: 500;
+      white-space: nowrap;
+      border: 1px solid transparent;
+      transition: 0.15s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 6px 16px rgba(108, 71, 255, 0.28);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-soft);
+    }
+
+    .btn-ghost {
+      background: white;
+      color: #333;
+      border: 1px solid #dddddd;
+    }
+
+    .btn-ghost:hover {
+      background: #f2f2f2;
+    }
+
+    .tiny-text {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .tiny-heading {
+      text-transform: uppercase;
+      font-size: 12px;
+      color: #999;
+      margin-top: 16px;
+      margin-bottom: 4px;
+      letter-spacing: 0.12em;
+    }
+
+    .tiny-footer {
+      margin-top: 6px;
+      font-size: 12px;
+      color: #999;
+    }
+
+    .coming-soon {
+      background: #eeeaff;
+      color: #5a32ff;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    /* Toast */
+    #toast {
+      position: fixed;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #6736ff;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 16px;
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 9999;
+    }
+
+    .toast-hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .toast-show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-10px);
+    }
+.progress-section {
+  margin-top: 25px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.05);
+}
+
+.progress-label {
+  font-size: 14px;
+  color: #5a32ff;
+  font-weight: 600;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+.progress-squares {
+  display: inline-flex;
+  gap: 6px;
+}
+
+.sq {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+}
+
+.sq.filled {
+  background: #6C47FF;
+  box-shadow: 0 0 6px rgba(108,71,255,0.4);
+}
+
+.sq.empty {
+  background: #e8e3ff;
+  opacity: 0.6;
+}
+
+
+  </style>
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+    <div class="coming-soon">
+      🚀 Muy pronto disponible
+    </div>
+
+    <div class="card">
+
+      <!-- IZQUIERDA -->
+      <div class="left">
+        <div class="brand">
+          <img src="agora-logo.png" class="brand-icon" alt="Ágora">
+          <span class="brand-title">Ágora</span>
+        </div>
+        <p class="brand-subtitle">Control simple para comercios reales.</p>
+      </div>
+
+      <!-- DERECHA -->
+      <div class="right">
+        <div class="pill">HERRAMIENTA PARA TU NEGOCIO</div>
+
+        <div class="title">Ventas, gastos y cierres en tiempo real.</div>
+
+        <div class="subtitle">
+          Registrá todo desde tu PC o tu celular y mantené tu caja ordenada sin planillas ni complicaciones.
+        </div>
+
+        <div class="buttons">
+          <a id="btn-pc" class="btn btn-primary">Descargar Ágora para PC</a>
+          <a id="btn-mobile" class="btn btn-ghost">Abrir Ágora Móvil</a>
+        </div>
+
+        <div class="tiny-heading">¿Para qué sirve?</div>
+        <div class="tiny-text">
+          Ágora te ayuda a registrar tus ventas, gastos y cierres diarios o mensuales sin perder tiempo. Hecho para kioscos, almacenes y comercios de barrio.
+        </div>
+
+        <div class="tiny-heading">Quiénes somos</div>
+        <div class="tiny-text">
+          Somos un equipo independiente de Argentina construyendo herramientas simples para emprendedores y negocios reales.
+        </div>
+
+        <div class="tiny-footer">
+          © <span id="year"></span> Ágora. Todos los derechos reservados.
+        </div>
+            <!-- 🔥 PROGRESS BAR ABAJO DE LA CARD -->
+    <div class="progress-section">
+      <p class="progress-label">Progreso 65%</p>
+      <div class="progress-squares">
+        <div class="sq filled"></div>
+        <div class="sq filled"></div>
+        <div class="sq filled"></div>
+        <div class="sq filled"></div>
+        <div class="sq filled"></div>
+        <div class="sq empty"></div>
+        <div class="sq empty"></div>
+        <div class="sq empty"></div>
+        <div class="sq empty"></div>
+        <div class="sq empty"></div>
+      </div>
+    </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- Toast -->
+  <div id="toast" class="toast-hidden">
+    🚀 Disponible muy pronto
+  </div>
+
+  <script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  function showToast() {
+    const t = document.getElementById('toast');
+    t.classList.remove('toast-hidden');
+    t.classList.add('toast-show');
+
+    setTimeout(() => {
+      t.classList.remove('toast-show');
+      t.classList.add('toast-hidden');
+    }, 2500);
+  }
+
+  function buttonSoon(button, originalText) {
+    button.textContent = "Muy pronto…";
+    setTimeout(() => {
+      button.textContent = originalText;
+    }, 2000);
+  }
+
+  const btnPc = document.getElementById("btn-pc");
+  const btnMobile = document.getElementById("btn-mobile");
+
+  btnPc.onclick = () => {
+    showToast();
+    buttonSoon(btnPc, "Descargar Ágora para PC");
+  };
+
+  btnMobile.onclick = () => {
+    showToast();
+    buttonSoon(btnMobile, "Abrir Ágora Móvil");
+  };
+</script>
+
+
+</body>
+</html>
